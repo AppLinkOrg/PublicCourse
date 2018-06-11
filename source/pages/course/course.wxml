@@ -1,0 +1,256 @@
+<!--pages/course/course.wxml-->
+<view wx:if="{{info!=null}}">
+  <view wx:if="{{info.status=='A'}}">
+    <view wx:if="{{info.type=='2'}}" style='line-height:0rpx;'>
+      <view wx:if="{{info.rtmps.length==1}}">
+        <live-player id="liveplayer" wx:for="{{info.rtmps}}" wx:key="key" wx:for-index="idx" src="{{item}}" mode="live" muted="{{idx!=currentrtmp}}" background-mute="{{memberinfo.playinback!='Y'}}" autoplay binderror="error" class='trailer' bindfullscreenchange="bindfullscreenchange"
+          bindstatechange="bindstatechange" />
+      </view>
+      <view class='trailer' wx:if="{{info.rtmps.length>1}}">
+        <live-player id="liveplayer" src="{{currentrtmpurl}}" mode="live" autoplay binderror="error" class='trailer' bindfullscreenchange="bindfullscreenchange" background-mute="{{memberinfo.playinback!='Y'}}" bindstatechange="bindstatechange" />
+        <view class='flex-row mostrtmp'>
+          <view wx:for="{{info.rtmps}}" wx:key="key" wx:for-index="idx" bindtap='playLive' id="{{idx}}">
+            <live-player src="{{item}}" muted="{{true}}" mode="live" autoplay bindstatechange="statechange" binderror="error" class='littleplayer' wx:if="{{currentrtmp!=idx}}" />
+          </view>
+        </view>
+      </view>
+      <!--
+    <swiper class='trailer' indicator-dots="{{false}}" current='{{currentrtmp}}' bindchange="changeCurrentrtmp">
+      <swiper-item wx:for="{{info.rtmps}}" wx:key="key" wx:for-index="idx" >
+        <live-player  src="{{item}}" mode="live" muted="{{idx!=currentrtmp}}" autoplay bindstatechange="statechange"  binderror="error" class='trailer {{infullscreen==true&&idx==currentrtmp?"infullscreenvideo":""}}"'  />
+      </swiper-item>
+    </swiper>-->
+      <cover-image class='play {{infullscreen?"infullplay":""}}' src='{{uploadpath}}resource/{{inplay==true?"stop":"play"}}.png' bindtap='changePlayStatus'></cover-image>
+      <cover-image class='fullscreen {{infullscreen?"infullscreen":""}}' src='{{uploadpath}}resource/fullscreen.png' bindtap='changeToFullScreen'></cover-image>
+    </view>
+    <view wx:if="{{info.type=='1'}}" style='line-height:0rpx;'>
+      <video id="myVideo" class='trailer' src="{{uploadpath}}course/{{currentvideo.video}}" poster="{{uploadpath}}course/{{currentvideo.cover}}" controls></video>
+    </view>
+    
+    <view wx:if="{{info.type=='1'}}">
+      <view class='flex-row tabs'>
+        <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==0?"active":""}}'>简介</view>
+          <view class='flex-1'></view>
+        </view>
+        <view class='flex-1 tab flex-row ' bindtap='changeTab' id="1">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==1?"active":""}}'>评论</view>
+          <view class='flex-1'></view>
+        </view>
+      </view>
+      <swiper indicator-dots="{{false}}" class='bottomtabs {{info.type=="2"&&info.rtmps.length>1?"bottomtabsmorertmp":""}}' current='{{currenttab}}' bindchange="changeCurrentTab">
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}" style='height:100%;line-height:0rpx;'>
+          
+          <view class='flex-row hosterinfo {{info.livingstatus=="B"&&info.rtmps.length>1?"hosterinfomorertmp":""}}'>
+      <view style='line-height:0rpx;'>
+        <image class='hosterphoto' src="{{uploadpath}}course/{{info.hosterphoto}}"></image>
+      </view>
+      <view style='margin-left:30rpx;' class='flex-1'>
+        <view class='hostername'>{{info.hostername}}</view>
+        <view class='hosterintroduce'>{{info.hosterintroduce}}</view>
+      </view>
+      <view wx:if="{{info.livingstatus=='A'}}">
+        <form bindsubmit="sendNotify" wx:if="{{info.notifyme==false}}" report-submit>
+          <button type='primary' size='mini' class='hosterfocus' formType="submit">设置提醒</button>
+        </form>
+        <button wx:if="{{info.notifyme==true}}" type='default' size='mini' class='hosterfocus'>等待提醒</button>
+      </view>
+      <view wx:if="{{info.livingstatus=='B'||info.livingstatus=='C'}}">
+          <button type='default' size='mini'  wx:if="{{info.favorited==false}}"  class='hosterfocus' bindtap='favorite' >+关注</button>
+        <button wx:if="{{info.favorited==true}}" type='primary' size='mini' class='hosterfocus'  bindtap='favorite' >已关注</button>
+      </view>
+    </view>
+            <image src="{{uploadpath}}course/{{info.introducepic}}" class='introducepic' mode='widthFix' bindtap='viewPhoto' id="{{uploadpath}}course/{{info.introducepic}}"></image>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}" class='topicbar'>
+            <view wx:for="{{comments}}" wx:key="k" style='padding:4rpx;margin-top:4rpx;'>
+              <text class='commentname font-primary' wx:if="{{item.member_openid==info.member_openid}}">[主持人] </text>
+              <text class='commentname '>{{item.member_nickName}}：</text>
+              <text class='commenttext'>{{item.comment}}</text>
+            </view>
+            <view wx:if="{{commentcount>255}}">
+              当前评论较多，只为你提供最近的一些热门讨论
+            </view>
+          </scroll-view>
+          <form bindsubmit="sendComment" bindreset="formReset">
+            <view class='white-block flex-row' style='padding:10rpx;'>
+              <view style='flex:4;font-size:28rpx;'>
+                <input type='text' maxlength='20' placeholder='我也要说点什么' name="comment" value='{{comment}}'></input>
+              </view>
+              <view class='text-center' style='flex:1'>
+                <button type='default' size='mini' formType="submit">发送</button>
+              </view>
+            </view>
+          </form>
+        </swiper-item>
+      </swiper>
+    </view>
+
+    <view wx:if="{{info.livingstatus=='B'}}">
+      <view class='flex-row tabs'>
+        <view class='flex-1 tab flex-row ' bindtap='changeTab' id="0">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==0?"active":""}}'>互动聊天({{commentcount}})</view>
+          <view class='flex-1'></view>
+        </view>
+        <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==1?"active":""}}'>简介</view>
+          <view class='flex-1'></view>
+        </view>
+      </view>
+      <swiper indicator-dots="{{false}}" class='bottomtabs {{info.livingstatus=="B"&&info.rtmps.length>1?"bottomtabsmorertmp":""}}' current='{{currenttab}}' bindchange="changeCurrentTab">
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}" class='topicbar'>
+            <view wx:for="{{comments}}" wx:key="k" style='padding:4rpx;margin-top:4rpx;'>
+              <text class='commentname font-primary' wx:if="{{item.member_openid==info.member_openid}}">[主持人] </text>
+              <text class='commentname '>{{item.member_nickName}}：</text>
+              <text class='commenttext'>{{item.comment}}</text>
+            </view>
+            <view wx:if="{{commentcount>255}}">
+              当前评论较多，只为你提供最近的一些热门讨论
+            </view>
+          </scroll-view>
+          <form bindsubmit="sendComment" bindreset="formReset">
+            <view class='white-block flex-row' style='padding:10rpx;'>
+              <view style='flex:4;font-size:28rpx;'>
+                <input type='text' maxlength='20' placeholder='我也要说点什么' name="comment" value='{{comment}}'></input>
+              </view>
+              <view class='text-center' style='flex:1'>
+                <button type='default' size='mini' formType="submit">发送</button>
+              </view>
+            </view>
+          </form>
+        </swiper-item>
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}" style='height:100%;line-height:0rpx;'>
+          <view class='flex-row hosterinfo {{info.livingstatus=="B"&&info.rtmps.length>1?"hosterinfomorertmp":""}}'>
+      <view style='line-height:0rpx;'>
+        <image class='hosterphoto' src="{{uploadpath}}course/{{info.hosterphoto}}"></image>
+      </view>
+      <view style='margin-left:30rpx;' class='flex-1'>
+        <view class='hostername'>{{info.hostername}}</view>
+        <view class='hosterintroduce'>{{info.hosterintroduce}}</view>
+      </view>
+      <view wx:if="{{info.livingstatus=='A'}}">
+        <form bindsubmit="sendNotify" wx:if="{{info.notifyme==false}}" report-submit>
+          <button type='primary' size='mini' class='hosterfocus' formType="submit">设置提醒</button>
+        </form>
+        <button wx:if="{{info.notifyme==true}}" type='default' size='mini' class='hosterfocus'>等待提醒</button>
+      </view>
+      <view wx:if="{{info.livingstatus=='B'||info.livingstatus=='C'}}">
+          <button type='default' size='mini'  wx:if="{{info.favorited==false}}"  class='hosterfocus' bindtap='favorite' >+关注</button>
+        <button wx:if="{{info.favorited==true}}" type='primary' size='mini' class='hosterfocus'  bindtap='favorite' >已关注</button>
+      </view>
+    </view>
+            <image src="{{uploadpath}}course/{{info.introducepic}}" class='introducepic' mode='widthFix' bindtap='viewPhoto' id="{{uploadpath}}course/{{info.introducepic}}"></image>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+
+
+    <view wx:if="{{info.livingstatus=='C'}}">
+      <view class='flex-row tabs'>
+        <view class='flex-1 tab flex-row ' bindtap='changeTab' id="0">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==0?"active":""}}'>精彩集锦</view>
+          <view class='flex-1'></view>
+        </view>
+        <view class='flex-1 tab flex-row ' bindtap='changeTab' id="1">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==1?"active":""}}'>互动聊天({{commentcount}})</view>
+          <view class='flex-1'></view>
+        </view>
+        <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==2?"active":""}}'>简介</view>
+          <view class='flex-1'></view>
+        </view>
+      </view>
+      <swiper indicator-dots="{{false}}" class='bottomtabs {{info.livingstatus=="B"&&info.rtmps.length>1?"bottomtabsmorertmp":""}}' current='{{currenttab}}' bindchange="changeCurrentTab">
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}">
+            <view wx:for="{{info.videos}}" wx:key="k" wx:for-index="idx">
+              <view class='flex-row' style='padding:20rpx;' hover-class='video_click' bindtap='playVideo' id="{{idx}}">
+                <view>
+                  <image class='video_cover' src="{{uploadpath}}course/{{item.cover}}" mode='widthFix'></image>
+                </view>
+                <view class='flex-1' style='margin-left:20rpx;'>
+                  <view class='video_title'>
+                    {{item.title}}
+                  </view>
+                  <view class='flex-row video_bottom_info'>
+                    <view>
+                      <image class='video_clock' src="{{uploadpath}}resource/clock1.png" mode='widthFix'></image>
+                    </view>
+                    <view class='video_playtime'>{{item.playtime}}</view>
+                  </view>
+
+                  <view class='video_playnow font-primary' wx:if="{{currentvideo.video==item.video}}">当前播放</view>
+                </view>
+              </view>
+              <view class='idt'></view>
+            </view>
+          </scroll-view>
+        </swiper-item>
+        <swiper-item>
+          <scroll-view scroll-y="{{true}}" class='topicbar'>
+            <view wx:for="{{comments}}" wx:key="k" style='padding:4rpx;margin-top:4rpx;'>
+              <text class='commentname font-primary' wx:if="{{item.member_openid==info.member_openid}}">[主持人] </text>
+              <text class='commentname '>{{item.member_nickName}}：</text>
+              <text class='commenttext'>{{item.comment}}</text>
+            </view>
+            <view wx:if="{{commentcount>255}}">
+              当前评论较多，只为你提供最近的一些热门讨论
+            </view>
+          </scroll-view>
+          <form bindsubmit="sendComment" bindreset="formReset">
+            <view class='white-block flex-row' style='padding:10rpx;'>
+              <view style='flex:4;font-size:28rpx;'>
+                <input type='text' maxlength='20' placeholder='我也要说点什么' name="comment" value='{{comment}}'></input>
+              </view>
+              <view class='text-center' style='flex:1'>
+                <button type='default' size='mini' formType="submit">发送</button>
+              </view>
+            </view>
+          </form>
+        </swiper-item>
+        <swiper-item>
+        <view class='flex-row hosterinfo {{info.livingstatus=="B"&&info.rtmps.length>1?"hosterinfomorertmp":""}}'>
+      <view style='line-height:0rpx;'>
+        <image class='hosterphoto' src="{{uploadpath}}course/{{info.hosterphoto}}"></image>
+      </view>
+      <view style='margin-left:30rpx;' class='flex-1'>
+        <view class='hostername'>{{info.hostername}}</view>
+        <view class='hosterintroduce'>{{info.hosterintroduce}}</view>
+      </view>
+      <view wx:if="{{info.livingstatus=='A'}}">
+        <form bindsubmit="sendNotify" wx:if="{{info.notifyme==false}}" report-submit>
+          <button type='primary' size='mini' class='hosterfocus' formType="submit">设置提醒</button>
+        </form>
+        <button wx:if="{{info.notifyme==true}}" type='default' size='mini' class='hosterfocus'>等待提醒</button>
+      </view>
+      <view wx:if="{{info.livingstatus=='B'||info.livingstatus=='C'}}">
+          <button type='default' size='mini'  wx:if="{{info.favorited==false}}"  class='hosterfocus' bindtap='favorite' >+关注</button>
+        <button wx:if="{{info.favorited==true}}" type='primary' size='mini' class='hosterfocus'  bindtap='favorite' >已关注</button>
+      </view>
+    </view>
+          <scroll-view scroll-y="{{true}}" style='height:100%;line-height:0rpx;'>
+            <image src="{{uploadpath}}course/{{info.introducepic}}" class='introducepic' mode='widthFix' bindtap='viewPhoto' id="{{uploadpath}}course/{{info.introducepic}}"></image>
+          </scroll-view>
+        </swiper-item>
+      </swiper>
+    </view>
+
+
+
+
+  </view>
+</view>

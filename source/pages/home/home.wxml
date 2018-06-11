@@ -1,0 +1,234 @@
+<!--pages/home/home.wxml-->
+
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==0?"active":""}}'>精选</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==1?"active":""}}'>直播</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==2?"active":""}}'>活动</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==3?"active":""}}'>关于我们</view>
+    <view class='flex-1'></view>
+  </view>
+</view>
+
+<swiper indicator-dots="{{false}}"  current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+      <view class='gridrow'>
+        <navigator url='/pages/course/course?id={{item.id}}' class='grid-item' wx:for="{{videolist}}" wx:key="k">
+          <view class='grid-cover'>
+            <image src='{{uploadpath}}course/{{item.cover}}'></image>
+          </view>
+          <view class='grid-time'>
+          {{item.totalplaytime}}
+          </view>
+          <view class='grid-title'>
+          {{item.title}}
+          </view>
+          <view class='grid-cat'>
+          {{item.coursecat_name}}
+          </view>
+        </navigator>
+      </view>
+      <view class='inbottomla' wx:if="{{foreshow.length>6}}">
+        到底啦
+      </view>
+
+
+    </scroll-view>
+
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+
+      <block wx:for="{{livelist}}" wx:key="k">
+        <navigator url='/pages/course/course?id={{item.id}}' class='foreshow-item'>
+          <view class='reminder flex-row'>
+            <view>
+              <image src='{{uploadpath}}resource/clock.png'></image>
+            </view>
+            <view >
+              {{item.start_date_formatting}}
+              直播
+            </view>
+          </view>
+          <image mode='aspectFill' src='{{uploadpath}}course/{{item.cover}}'></image>
+          <view class='title'>{{item.title}}</view>
+        </navigator>
+      </block>
+      <view class='inbottomla' wx:if="{{foreshow.length>3}}">
+        到底啦
+      </view>
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%;'>
+
+      <view class='text-center headerback'>
+        <image src='{{uploadpath}}inst/{{info.logobackimg}}' mode='aspectFill'></image>
+      </view>
+      <view class='headerlogo'>
+        <view class='flex-row'>
+          <view class='logoborder'>
+            <image class='logo' src='{{uploadpath}}inst/{{info.logo}}'></image>
+          </view>
+        </view>
+        <view class='text-center txt-primary padding-20 h4'>
+          {{info.name}}
+        </view>
+        <view class='text-center txt-white h6'>
+          "{{info.slogen}}"
+        </view>
+      </view>
+      <view class='white-block flex-row contact-info'>
+        <view class=' padding-20 flex-1'>
+
+          <view class='flex-row infoitem' bindtap='openMap' id="{{info.address}}" wx:if="{{info.address!=''}}">
+            <view>
+              <image src='{{uploadpath}}resource/map.png' class='info-icon'></image>
+            </view>
+            <view class=' infodesc nowrap'>{{info.address}}</view>
+          </view>
+          <view class='flex-row infoitem' bindtap='phoneCall' id="{{info.tel}}" wx:if="{{info.tel!=''}}">
+            <view>
+              <image src='{{uploadpath}}resource/phone.png' class='info-icon'></image>
+            </view>
+            <view class=' infodesc'>{{info.tel}}</view>
+          </view>
+          <view class='flex-row infoitem' wx:if="{{info.openning!=''}}">
+            <view>
+              <image src='{{uploadpath}}resource/time.png' class='info-icon'></image>
+            </view>
+            <view class=' infodesc'>{{info.openning}}</view>
+          </view>
+
+        </view>
+        <view class='info-big-icon  padding-20' style='padding-right:0rpx;padding-left:0rpx;'>
+          <image src='{{uploadpath}}resource/customerservice.png' class='info-icon-big'></image>
+          <button open-type='contact' style='margin-top:-100rpx;width:100rpx;height:100rpx;' class='clear-contact '></button>
+        </view>
+        <view class='info-big-icon  padding-20' bindtap='viewPhoto' id="{{uploadpath}}inst/{{info.qrcode}}" wx:if="{{info.qrcode!=''}}">
+          <image src='{{uploadpath}}resource/qrcode.png' class='info-icon-big'></image>
+        </view>
+
+      </view>
+
+
+      <view class='white-block margin-top padding-20 text-center' wx:if="{{info.poster!=''}}">
+        <image src='{{uploadpath}}inst/{{info.poster}}' style='width:100%;' mode='widthFix'></image>
+      </view>
+
+
+      <navigator url='/pages/aboutus/aboutus?id={{item.id}}' wx:for="{{aboutuslist}}" wx:key="key">
+        <view class='subbar flex-row'>
+          <view class='firsttab'></view>
+          <view class='secondtab'>{{item.name}}</view>
+          <view class='thirdtab flex-1 text-right'></view>
+        </view>
+        <view class='white-block padding-20 h5 '>
+          <text>
+    {{item.summary}}
+    </text>
+        </view>
+      </navigator>
+
+
+
+      <swiper class='margin-top' autoplay='true' indicator-dots='true'>
+        <swiper-item wx:for="{{indexbanner}}" wx:key="k">
+          <navigator url='{{item.objs_path}}'>
+            <image src='{{uploadpath}}indexbanner/{{item.img}}' style='width:100vw;height:300rpx;' mode="aspectFill"></image>
+          </navigator>
+        </swiper-item>
+      </swiper>
+
+      <block wx:if="{{productlist.length>0}}">
+        <view class='subbar flex-row'>
+          <view class='firsttab'></view>
+          <view class='secondtab'>热门商品</view>
+          <navigator url='/pages/productlist/productlist' class='thirdtab flex-1 text-right'>更多</navigator>
+        </view>
+        <view class='blockrow flex-row flex-wrap'>
+          <navigator url='/pages/product/product?id={{item.id}}' class='blockitem' wx:for="{{productlist}}" wx:key="k2">
+            <view>
+              <image src='{{uploadpath}}product/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
+            </view>
+            <view class='headtitle'>
+              {{item.title}}
+            </view>
+            <view class='headdescription'>
+              {{item.summary}}
+            </view>
+          </navigator>
+        </view>
+      </block>
+
+      <block wx:if="{{newslist.length>0}}">
+        <view class='subbar flex-row'>
+          <view class='firsttab'></view>
+          <view class='secondtab'>热门动态</view>
+          <navigator url='/pages/newslist/newslist' class='thirdtab flex-1 text-right'>更多</navigator>
+        </view>
+        <view class='white-block'>
+          <navigator url='/pages/news/news?id={{item.id}}' wx:for="{{newslist}}" wx:key="k" class='flex-row rowitem'>
+            <view>
+              <image src='{{uploadpath}}news/{{item.cover}}' class='imgcover' mode='aspectFill'></image>
+            </view>
+            <view class='flex-1'>
+              <view class='headtitle'>{{item.name}}</view>
+              <view class='headdescription'>
+                <text>
+          {{item.summary}}
+          </text>
+              </view>
+              <view class='headdescription text-right'>{{item.published_date_formatting}}</view>
+            </view>
+          </navigator>
+        </view>
+      </block>
+
+
+      <navigator url='/pages/service/service?id={{item.id}}' wx:for="{{servicelist}}" wx:key="key">
+        <view class='subbar flex-row'>
+          <view class='firsttab'></view>
+          <view class='secondtab'>{{item.name}}</view>
+          <view class='thirdtab flex-1 text-right'></view>
+        </view>
+        <view class='white-block padding-20 h5 '>
+          <text>
+    {{item.summary}}
+    </text>
+        </view>
+      </navigator>
+
+
+
+
+      <view wx:if="{{instinfo.level!=3}}" class='inbottomla txt-gray h6'>
+        云易创提供技术支持
+      </view>
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

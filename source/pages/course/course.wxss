@@ -1,0 +1,172 @@
+/* pages/livemeeting/livemeeting.wxss */
+.trailer{
+  background: black;
+  width: 100vw;
+  height: 56.7vw;
+}
+.hosterinfo{
+  padding:3vh;
+  border-bottom: 4rpx solid #f2f2f2;
+}
+.hosterinfomorertmp{
+  margin-top: 13.7vw;
+}
+.hosterphoto{
+  width: 80rpx;
+  height:80rpx;
+  border-radius: 50%;
+}
+.hostername{
+  font-size: 28rpx;
+  color:black;
+  margin-top: 6rpx;
+  height: 40rpx;
+}
+.hosterintroduce{
+  font-size: 20rpx;
+  margin-top: 10rpx;
+  color:#999;
+}
+.hosterfocus{
+  
+  margin-top: 6rpx;
+}
+.bottomtabs{
+  height:calc( 100vh - 556rpx );
+}
+.bottomtabsmorertmp{
+  height:calc( 100vh - 556rpx - 13.6vw );
+}
+.introducepic{
+  width: 100vw;
+}
+.tabs{
+  /*box-shadow: 0rpx 4rpx 4rpx #888888;*/
+}
+.tab{
+  text-align: center;
+  font-size: 22rpx;
+}
+.tab .tabtext{
+  padding-top:8rpx;
+  padding-bottom:8rpx;
+}
+.tab .active{
+  border-bottom: 6rpx solid #BF8436;
+  color:#BF8436;
+}
+.commentname{
+  font-size: 24rpx;
+}
+.commenttext{
+  font-size: 24rpx;
+  color:black;
+}
+
+.play{
+  position: fixed;
+  width: 60rpx;
+  height: 60rpx;
+  top: 45vw;
+  left: 20rpx;
+}
+.infullplay{
+  bottom:20rpx;
+  left: 20rpx;
+}
+
+.fullscreen{
+  position: fixed;
+  width: 60rpx;
+  height: 60rpx;
+  top: 45vw;
+  right: 20rpx;
+}
+.infullscreen{
+  bottom:20rpx;
+  right: 20rpx;
+}
+.infullscreenvideo{
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+}
+
+.mostrtmp{
+  background: #111111;
+  
+}
+.littleplayer{
+  width:24vw;
+  height:13.6vw;
+  margin-left: 6rpx;
+}
+.topicbar{
+  height:81%;
+  padding:10rpx;
+  background-color:#f2f2f2;
+}
+.bottomtabsmorertmp .topicbar{
+  height: 75%;
+}
+.icon{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 20rpx;
+}
+.icontxt{
+  margin-left: 10rpx;
+  font-size: 28rpx;
+  margin-top: 20rpx;
+  color:#BF8436;
+  line-height: 0rpx;
+}
+
+.video_cover{
+  width: 140rpx;
+}
+.idt{
+  height: 2rpx;
+  background: #f2f2f2;
+}
+.video_title{
+ color: #333;
+  font-size: 32rpx;
+}
+.video_bottom_info{
+  margin-top: 5rpx;
+}
+.video_clock{
+  width:28rpx;
+  height: 32rpx;
+}
+.video_playtime{
+  font-size: 24rpx;
+  margin-top: 6rpx;
+  margin-left: 6rpx;
+  color:#999;
+}
+.video_click{
+  background-color: #f4f4f4;
+}
+.video_playnow{
+  font-size: 28rpx;
+}
+.avatar{
+  width: 50rpx;
+  height:50rpx;
+  border-radius: 50rpx;
+}
+
+.nickname{
+  font-size: 24rpx;
+  margin-top: 8rpx;
+  margin-left: 10rpx;
+}
+
+.righttop{
+  position: absolute;
+  right: 20rpx;
+}
