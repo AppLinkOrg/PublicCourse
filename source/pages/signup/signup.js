@@ -19,6 +19,7 @@ class Signup extends AppBase {
       showTopTips: "",
       reminderResend: 0
     });
+    this.Base.needauth=true;
   }
   nameChange(e){
     this.Base.setMyData({ name: e.detail.value });

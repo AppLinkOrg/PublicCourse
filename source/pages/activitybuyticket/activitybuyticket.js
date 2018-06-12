@@ -27,6 +27,7 @@ class Content extends AppBase {
     //if (super.onShow() == true) {
       var order_id = this.Base.getMyData().order_id;
       if(order_id>0){
+        this.Base.setMyData({order_id:0});
         wx.navigateTo({
           url: '/pages/activityorder/activityorder?id='+order_id.toString(),
         })

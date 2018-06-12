@@ -1,8 +1,9 @@
 {
   "pages":[
+    "pages/home/home",
+    "pages/auth/auth",
     "pages/coursecategory/coursecategory",
     "pages/courselist/courselist",
-    "pages/home/home",
     "pages/activityorder/activityorder",
     "pages/success/success",
     "pages/activityorderlist/activityorderlist",

@@ -12,3 +12,6 @@
   color: #999;
 }
 
+.subbar{
+  background: transparent;
+}

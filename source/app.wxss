@@ -36,6 +36,9 @@ view,navigator{
 .white-block{
   background: white;
 }
+.primary-block{
+  background: #BF8436;
+}
 .bg-primary{
   background: #BF8436;
 }
@@ -113,6 +116,7 @@ button[disabled][type=primary] {
   position: fixed;
   bottom: 0rpx;
   width: 750rpx;
+  z-index: 100;
 }
 .fixedbottom button{
   border-radius: 0rpx;

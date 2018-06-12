@@ -11,6 +11,7 @@ export class AppBase {
 
   static UserInfo = {};
   unicode = "yycgkk";
+  needauth = false;
   pagetitle=null;
   app = null;
   options = null;
@@ -184,7 +185,13 @@ export class AppBase {
             fail: res => {
               console.log(res);
               //that.Base.gotoOpenUserInfoSetting();
-              that.onMyShow();
+              if (this.Base.needauth==true){
+                wx.redirectTo({
+                  url: '/pages/auth/auth',
+                })
+              }else{
+                that.onMyShow();
+              }
               //that.Base.getAddress();
             }
           });

@@ -35,6 +35,7 @@
   text-align: center;
   padding-top:40rpx;
   padding-bottom:40rpx;
+  z-index: 100;
 }
 
 .intput{
