@@ -1,0 +1,46 @@
+/* pages/activitybuyticket/activitybuyticket.wxss */
+.cover{
+  width:235rpx;
+  height: 140rpx;
+}
+.bottom-price{
+  position: absolute;
+  right:20rpx;
+  top:130rpx;
+  font-size: 28rpx;
+}
+.ticket{
+  margin-bottom: 30rpx;
+  border:4rpx solid #f0f0f0;
+  border-radius: 10rpx;
+}
+.ticket.selected{
+  border:4rpx solid #BF8436;
+}
+.ticket .title{
+  color:black;
+}
+.ticket .remark{
+  font-size: 26rpx;
+  border-top: 2rpx solid #f0f0f0;
+}
+
+
+.bottomfix{
+  position: fixed;
+  background: #BF8436;
+  bottom: 0rpx;
+  width:750rpx;
+  color:white;
+  text-align: center;
+  padding-top:40rpx;
+  padding-bottom:40rpx;
+}
+
+.intput{
+  border:2rpx solid #cdcdcd;
+  max-width: 60rpx;
+  padding:10rpx;
+  text-align: center;
+  border-radius: 4rpx;
+}

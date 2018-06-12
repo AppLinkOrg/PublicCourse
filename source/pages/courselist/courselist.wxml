@@ -1,0 +1,21 @@
+<!--pages/courselist/courselist.wxml-->
+
+      <view class='gridrow'>
+        <navigator url='/pages/course/course?id={{item.id}}' class='grid-item' wx:for="{{videolist}}" wx:key="k">
+          <view class='grid-cover'>
+            <image src='{{uploadpath}}course/{{item.cover}}'></image>
+          </view>
+          <view class='grid-time'>
+          {{item.totalplaytime}}
+          </view>
+          <view class='grid-title'>
+          {{item.title}}
+          </view>
+          <view class='grid-cat'>
+          {{item.coursecat_name}}
+          </view>
+        </navigator>
+      </view>
+      <view class='inbottomla' wx:if="{{videolist.length>6}}">
+        到底啦
+      </view>

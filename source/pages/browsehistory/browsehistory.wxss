@@ -1,0 +1,36 @@
+/* pages/browsehistory/browsehistory.wxss */
+
+.video_cover{
+  width: 220rpx;
+}
+.idt{
+  height: 2rpx;
+  background: #f2f2f2;
+}
+.video_title{
+ color: #333;
+  font-size: 32rpx;
+}
+.video_bottom_info{
+  margin-top: 5rpx;
+}
+.video_clock{
+  width:28rpx;
+  height: 32rpx;
+}
+.video_playtime{
+  font-size: 24rpx;
+  margin-top: 6rpx;
+  color:#999;
+}
+.video_click{
+  background-color: #f4f4f4;
+}
+.video_playnow{
+  font-size: 28rpx;
+}
+.avatar{
+  width: 50rpx;
+  height:50rpx;
+  border-radius: 50rpx;
+}

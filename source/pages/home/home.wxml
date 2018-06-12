@@ -8,17 +8,12 @@
   </view>
   <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
     <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==1?"active":""}}'>直播</view>
+    <view class='tabtext {{currenttab==1?"active":""}}'>活动</view>
     <view class='flex-1'></view>
   </view>
   <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
     <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==2?"active":""}}'>活动</view>
-    <view class='flex-1'></view>
-  </view>
-  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
-    <view class='flex-1'></view>
-    <view class='tabtext {{currenttab==3?"active":""}}'>关于我们</view>
+    <view class='tabtext {{currenttab==2?"active":""}}'>关于我们</view>
     <view class='flex-1'></view>
   </view>
 </view>
@@ -43,7 +38,7 @@
           </view>
         </navigator>
       </view>
-      <view class='inbottomla' wx:if="{{foreshow.length>6}}">
+      <view class='inbottomla' wx:if="{{videolist.length>6}}">
         到底啦
       </view>
 
@@ -55,30 +50,25 @@
     <scroll-view scroll-y style='height:100%'>
 
 
-      <block wx:for="{{livelist}}" wx:key="k">
-        <navigator url='/pages/course/course?id={{item.id}}' class='foreshow-item'>
-          <view class='reminder flex-row'>
-            <view>
-              <image src='{{uploadpath}}resource/clock.png'></image>
-            </view>
-            <view >
-              {{item.start_date_formatting}}
-              直播
-            </view>
-          </view>
-          <image mode='aspectFill' src='{{uploadpath}}course/{{item.cover}}'></image>
-          <view class='title'>{{item.title}}</view>
-        </navigator>
-      </block>
-      <view class='inbottomla' wx:if="{{foreshow.length>3}}">
+      <view style='height:30rpx;'></view>
+<navigator url='/pages/activity/activity?id={{item.id}}' class='act white-block' wx:for="{{activitylist}}" wx:key="k">
+  <view>
+    <image class='cover' src='{{uploadpath}}activity/{{item.cover}}'></image>
+  </view>
+  <view class='detail'>
+    <view>
+      {{item.name}}
+    </view>
+    <view class='flex-row' style='font-size:24rpx;margin-top:10rpx;'>
+      <view class='flex-1 '>{{item.datedesc}}</view>
+      <view class='flex-1 font-primary text-right'>{{item.pricedesc}}</view>
+    </view>
+  </view>
+</navigator>
+      <view class='inbottomla' wx:if="{{activitylist.length>3}}">
         到底啦
       </view>
 
-
-    </scroll-view>
-  </swiper-item>
-  <swiper-item>
-    <scroll-view scroll-y style='height:100%'>
 
     </scroll-view>
   </swiper-item>

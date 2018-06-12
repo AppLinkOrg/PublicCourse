@@ -1,0 +1,14 @@
+/* pages/category/category.wxss */
+
+.item{
+  width:25vw;
+  padding-bottom: 30rpx;
+}
+.item .logo{
+  width: 10vw;
+  height: 10vw;
+}
+.item .name{
+  color: #999;
+}
+

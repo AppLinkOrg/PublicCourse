@@ -1,0 +1,12 @@
+/* pages/activitylist/activitylist.wxss */
+.act{
+  margin-left:20rpx;
+  margin-right:20rpx;
+  margin-bottom:30rpx;
+}
+.cover{
+  width: 100%;
+}
+.detail{
+  padding: 10rpx;
+}

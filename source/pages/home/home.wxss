@@ -55,3 +55,19 @@ height: 350rpx;
   height: 100rpx;
 }
 
+
+
+.act{
+  margin-left:20rpx;
+  margin-right:20rpx;
+  margin-bottom:30rpx;
+  border-radius: 10rpx;
+}
+.cover{
+  width: 100%;
+  border-top-left-radius: 10rpx;
+  border-top-right-radius: 10rpx;
+}
+.detail{
+  padding: 10rpx;
+}

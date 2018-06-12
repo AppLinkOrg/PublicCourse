@@ -1,0 +1,54 @@
+<!--pages/activity/activity.wxml-->
+<block wx:if="{{id}}">
+  <view>
+    <image class='fullimg' src='{{uploadpath}}activity/{{cover}}' mode='widthFix'></image>
+  </view>
+  <view class='padding-20 white-block'>
+    <view>{{name}}</view>
+    <view class='flex-row' style='font-size:24rpx;margin-top:6rpx;'>
+      <view style='color:#cdcdcd'>浏览</view>
+      <view style='margin-left:10rpx;'>{{viewcount}}</view>
+    </view>
+  </view>
+  <view style='margin-top:4rpx;font-size:28rpx;' class='white-block' >
+    <view class='flex-row'>
+      <view class='padding-20'>
+          <image class='icon' src='{{uploadpath}}resource/time-o.png'></image>
+      </view>
+      <view class='flex-1 padding-20' style='border-bottom:2rpx solid #cdcdcd;margin-top:5rpx;'>
+          {{datedesc}}
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='padding-20'>
+          <image class='icon' src='{{uploadpath}}resource/location-o.png'></image>
+      </view>
+      <view class='flex-1 padding-20' bindtap='openMap' id="{{address}}" style='border-bottom:2rpx solid #cdcdcd;margin-top:5rpx;'>
+          {{address}}
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='padding-20'>
+          <image class='icon' src='{{uploadpath}}resource/phone-o.png'></image>
+      </view>
+      <view class='flex-1 padding-20' bindtap='phoneCall' id="{{tel}}" style='border-bottom:2rpx solid #cdcdcd;margin-top:5rpx;'>
+          {{tel}}
+      </view>
+    </view>
+    <view class='flex-row'>
+      <view class='padding-20'>
+          <image class='icon' src='{{uploadpath}}resource/yuan.png'></image>
+      </view>
+      <view class='flex-1 padding-20 font-primary' style='margin-top:5rpx;'  bindtap='gotoBuy'>
+          {{pricedesc}}
+      </view>
+    </view>
+  </view>
+  <view  style='margin-top:8rpx;'>
+    <image class='fullimg' id="{{uploadpath}}activity/{{poster}}" src='{{uploadpath}}activity/{{poster}}' mode='widthFix' bindtap='viewPhoto'></image>
+  </view>
+  <view style='height:160rpx;' ></view>
+  <view class='bottomfix' bindtap='gotoBuy'>
+    立即报名
+  </view>
+</block>

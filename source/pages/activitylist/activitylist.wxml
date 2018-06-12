@@ -1,0 +1,16 @@
+<!--pages/activitylist/activitylist.wxml-->
+<view style='height:30rpx;'></view>
+<navigator url='/pages/activity/activity?id={{item.id}}' class='act white-block' wx:for="{{list}}" wx:key="k">
+  <view>
+    <image class='cover' src='{{uploadpath}}activity/{{item.cover}}'></image>
+  </view>
+  <view class='detail'>
+    <view>
+      {{item.name}}
+    </view>
+    <view class='flex-row' style='font-size:24rpx;margin-top:10rpx;'>
+      <view class='flex-1 '>{{item.datedesc}}</view>
+      <view class='flex-1 font-primary text-right'>{{item.pricedesc}}</view>
+    </view>
+  </view>
+</navigator>

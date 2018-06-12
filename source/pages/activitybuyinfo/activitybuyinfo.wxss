@@ -1,0 +1,19 @@
+/* pages/activitybuyinfo/activitybuyinfo.wxss */
+.fname{
+  margin-top: 20rpx;
+  font-size: 30rpx;
+}
+.fvalue{
+  margin-top: 6rpx;
+  font-size: 30rpx;
+}
+.fvalue input{
+  background: #f2f2f2;
+  padding:4rpx;
+  border-radius: 6rpx;
+}
+.redinput{
+  color:red;
+  font-size: 22rpx;
+  margin-left: 10rpx;
+}

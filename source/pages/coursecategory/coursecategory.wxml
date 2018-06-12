@@ -1,0 +1,42 @@
+<!--pages/category/category.wxml-->
+<view class='white-block flex-row flex-wrap margin-top' style='padding-top:30rpx;'>
+  <navigator url='/pages/courselist/courselist?cat_id={{item.id}}' class='item text-center' wx:for="{{categorylist}}" wx:key="key">
+    <view>
+      <image class='logo' src='{{uploadpath}}coursecat/{{item.logo}}'></image>
+    </view>
+    <view class='name h6'>{{item.name}}</view>
+  </navigator>
+</view>
+
+<view class='margin-top'></view>
+
+<block wx:for="{{categorylist}}" wx:key="key">
+  <view class='subbar flex-row' >
+    <view class='firsttab'></view>
+    <view class='secondtab'>{{item.name}}</view>
+    <navigator  url='/pages/courselist/courselist?cat_id={{item.id}}' class='thirdtab flex-1 text-right'>更多</navigator>
+  </view>
+  <view >
+
+<view class='gridrow'>
+        <navigator url='/pages/course/course?id={{item.id}}' class='grid-item' wx:for="{{item.courselist}}" wx:key="k">
+          <view class='grid-cover'>
+            <image src='{{uploadpath}}course/{{item.cover}}'></image>
+          </view>
+          <view class='grid-time'>
+          {{item.totalplaytime}}
+          </view>
+          <view class='grid-title'>
+          {{item.title}}
+          </view>
+          <view class='grid-cat'>
+          {{item.coursecat_name}}
+          </view>
+        </navigator>
+      </view>
+
+  </view>
+</block>
+      <view class='inbottomla' wx:if="{{categorylist.length>6}}">
+        到底啦
+      </view>

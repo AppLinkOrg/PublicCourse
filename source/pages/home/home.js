@@ -3,6 +3,7 @@ import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
 import { InstApi } from "../../apis/inst.api.js";
 import { CourseApi } from "../../apis/course.api.js";
+import { ActivityApi } from "../../apis/activity.api.js";
 
 class Content extends AppBase {
   constructor() {
@@ -33,9 +34,8 @@ class Content extends AppBase {
     var currenttab=this.Base.getMyData().currenttab;
     switch(currenttab){
       case 0: this.Base.loadhot(); break;
-      case 1: this.Base.loadlive();break;
-      case 2:  break;
-      case 3: this.Base.loadinst();break;
+      case 1: this.Base.loadactivity();break;
+      case 2: this.Base.loadinst();break;
       
       break;
     }
@@ -54,6 +54,13 @@ class Content extends AppBase {
       that.setMyData({ livelist: livelist });
     });
   }
+  loadactivity() {
+    var that = this;
+    var api = new ActivityApi();
+    api.list({ inhome: "Y" }, (activitylist) => {
+      that.setMyData({ activitylist: activitylist });
+    });
+  }
   loadinst(){
 
     var that = this;
@@ -65,7 +72,7 @@ class Content extends AppBase {
       that.setMyData({ info: info });
     });
     instapi.aboutuslist({ inhome: "Y" }, (aboutuslist) => {
-      that.Base.setMyData({ aboutuslist: aboutuslist });
+      that.setMyData({ aboutuslist: aboutuslist });
     });
     instapi.newslist({ inhome: "Y" }, (newslist) => {
       that.setMyData({ newslist: newslist });
@@ -86,6 +93,7 @@ body.changeCurrentTab = content.changeCurrentTab;
 body.changeTab = content.changeTab; 
 body.loaddata = content.loaddata; 
 body.loadinst = content.loadinst; 
-body.loadhot = content.loadhot;
+body.loadhot = content.loadhot; 
 body.livelist = content.livelist;
+body.loadactivity = content.loadactivity;
 Page(body)

@@ -1,0 +1,49 @@
+<!--pages/activitybuyticket/activitybuyticket.wxml-->
+<block>
+<view class='padding-20 white-block'>
+  <view class='flex-row '>
+    <view >
+      <image class='cover' src='{{uploadpath}}activity/{{cover}}' ></image>
+    </view>
+    <view class='flex-1' style='margin-left:20rpx;'>
+      <view>{{name}}</view>
+      <view class='flex-row'>
+        <view>
+          <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+        </view>
+        <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{datedesc}}</view>
+      </view>
+      <view class='bottom-price font-primary'>
+        {{pricedesc}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='padding-20'>
+  <view wx:for="{{ticketlevels}}" wx:key="f" class='white-block ticket  {{item.selected==true?"selected":""}} {{item.status=="S"?"disabled":""}}' bindtap='selectTicket' id="{{item.id}}" >
+    <view class='title padding-20'>
+      {{item.name}} <text wx:if="{{item.status=='S'}}">(停售)</text><text wx:if="{{item.needapproved=='Y'}}">(需审核)</text>
+    </view>
+    <view class='price padding-20 flex-row'>
+      <view class='font-primary' wx:if="{{item.price==0}}">免费</view>
+      <view class='font-primary' wx:else>￥{{item.price}}</view>
+      <view class='flex-1'></view>
+      <view >
+        <input type='number' value='{{item.buycount}}'  bindinput='updateBuycount' id="{{item.id}}"  class='intput' wx:if="{{item.status=='A'}}" maxlength='2' ></input>
+      </view>
+    </view>
+    <view  class='remark padding-20'>
+      <view>备注说明</view>
+      <view wx:if="{{item.remark==''}}">无</view>
+      <view wx:else>{{item.remark}}</view>
+    </view>
+  </view>
+</view>
+
+
+  <view style='height:160rpx;' ></view>
+  <view class='bottomfix ' bindtap='gotoInfo' >
+  支付 ￥{{totalamount}} 购买
+  </view>
+</block>

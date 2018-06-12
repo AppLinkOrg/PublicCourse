@@ -1,0 +1,98 @@
+<!--pages/activityorder/activityorder.wxml-->
+
+<view class='padding-20 white-block'>
+  <view class='flex-row '>
+    <view>
+      <image class='cover' src='{{uploadpath}}activity/{{activity_cover}}'></image>
+    </view>
+    <view class='flex-1' style='margin-left:20rpx;'>
+      <view>{{activity_name}}</view>
+      <view class='flex-row'>
+        <view>
+          <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+        </view>
+        <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{activity_datedesc}}</view>
+      </view>
+      <view class='bottom-price '>
+        {{activity_pricedesc}}
+      </view>
+    </view>
+  </view>
+</view>
+
+<view class='border-top padding-20 white-block'>
+  <view class='flex-row '>
+    <view class='black-font'>订单号</view>
+    <view class='flex-1 text-right'>{{orderno}}</view>
+  </view>
+</view>
+<view class='border-top padding-20 white-block'>
+  <view class='flex-row '>
+    <view class='black-font'>票种信息</view>
+    <view class='flex-1 text-right font-primary'>{{activity_ticket_level_fufllname}}</view>
+  </view>
+</view>
+<view class='border-top padding-20 white-block'>
+  <view class='flex-row '>
+    <view class='flex-1 black-font'>票价信息</view>
+    <view class='flex-1 text-right font-primary'>￥{{price}} x {{buycount}}</view>
+  </view>
+</view>
+<view class='border-top padding-20 white-block'>
+  <view class='flex-row '>
+    <view class='flex-1 black-font'>报名手机号</view>
+    <view class='flex-1 text-right'>{{mobile}}</view>
+  </view>
+</view>
+
+<view class='border-top padding-20 white-block'>
+  <view class='flex-row '>
+    <view class='flex-1 black-font'>购票注意事项</view>
+  </view>
+  <view style='margin-top:20rpx;'>
+    {{activity_ticket_level_buydescription}}
+  </view>
+</view>
+
+
+
+<view class='padding-20 white-block' style='margin-top:20rpx'  wx:if="{{status==4}}">
+  <view class='flex-row '>
+    <view class='flex-1 black-font'>审核不通过原因</view>
+  </view>
+  <view style='margin-top:20rpx;'>
+    {{rejectreason}}
+  </view>
+</view>
+
+<block wx:if="{{status==1}}">
+  <view class='bottomfix flex-row'>
+    <view class='flex-1 white-block' style='padding-top:40rpx;padding-bottom:40rpx;'>合计：￥{{totalamount}}</view>
+    <view class='flex-1 primary-block' style='padding-top:40rpx;padding-bottom:40rpx;' bindtap='gotoBuy'>立即支付</view>
+  </view>
+</block>
+
+<block wx:if="{{status==2}}">
+  <view class='bottomfix flex-row'>
+    <view class='flex-1 primary-block' style='padding-top:40rpx;padding-bottom:40rpx;'>审核中</view>
+  </view>
+</block>
+
+
+<block wx:if="{{status==3}}">
+  <view class='bottomfix flex-row'>
+    <view class='flex-1 primary-block' style='padding-top:40rpx;padding-bottom:40rpx;'>购票成功</view>
+  </view>
+</block>
+
+<block wx:if="{{status==4}}">
+  <view class='bottomfix flex-row'>
+    <view class='flex-1 primary-block' style='padding-top:40rpx;padding-bottom:40rpx;'>审核不通过，已退款</view>
+  </view>
+</block>
+
+<block wx:if="{{status==5}}">
+  <view class='bottomfix flex-row'>
+    <view class='flex-1 primary-block' style='padding-top:40rpx;padding-bottom:40rpx;'>已过期</view>
+  </view>
+</block>

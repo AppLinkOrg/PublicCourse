@@ -1,0 +1,42 @@
+<!--pages/activitybuyinfo/activitybuyinfo.wxml-->
+<form bindsubmit="submitForm" report-submit>
+  <view class='white-block ' style='margin-10rpx;padding:40rpx;'>
+    <view class="fname">姓名
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input disabled='{{true}}' name="name" value='{{memberinfo.name}}'></input>
+    </view>
+    <view class="fname">手机号码
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input disabled='{{true}}' name="mobile" value='{{memberinfo.mobile}}'></input>
+    </view>
+    <view class="fname">公司
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input value='' name="company" maxlength='50'></input>
+    </view>
+    <view class="fname">职位
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input value='' name="position" maxlength='50'></input>
+    </view>
+    <view class="fname">微信
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input value='' name="wechataccount" maxlength='50'></input>
+    </view>
+    <view class="fname">行业
+      <text class='redinput'>(必填)</text>
+    </view>
+    <view class='fvalue'>
+      <input value='' name="industry" maxlength='50'></input>
+    </view>
+    <button type='primary' formType='submit' style='margin-top:100rpx;'>确认报名信息</button>
+  </view>
+</form>

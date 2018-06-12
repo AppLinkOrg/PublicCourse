@@ -1,0 +1,15 @@
+/* pages/activity/activity.wxss */
+.icon{
+  width: 48rpx;
+  height: 48rpx;
+}
+.bottomfix{
+  position: fixed;
+  background: #BF8436;
+  bottom: 0rpx;
+  width:750rpx;
+  color:white;
+  text-align: center;
+  padding-top:40rpx;
+  padding-bottom:40rpx;
+}

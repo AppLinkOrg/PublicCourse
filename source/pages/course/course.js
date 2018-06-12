@@ -10,7 +10,7 @@ class Content extends AppBase {
     super();
   }
   onLoad(options) {
-    options.id=1;
+    //options.id=1;
     this.Base.Page = this;
     super.onLoad(options);
     this.Base.setMyData({ currenttab: 0, currentrtmp: 0, comments: [], infullscreen: false, currentrtmpurl: "", inplay: true,playcode:0,info:null,currentvideo:null });
@@ -23,19 +23,25 @@ class Content extends AppBase {
       liveapi.info({id:this.Base.options.id},(ret)=>{
         this.Base.options.id=ret.id;
         this.Base.setMyData({info:ret});
-        wx.setNavigationBarTitle({
-          title: ret.title
-        });
+        
         liveplayer=wx.createLivePlayerContext("liveplayer", this);
         if(ret.videos!=undefined){
           this.Base.setMyData({ currentvideo: ret.videos[0] });
         }
+
+        videoContext = wx.createVideoContext('myVideo');
+        
       });
       var memberApi =new MemberApi();
       memberApi.info({},(memberinfo)=>{
         if(memberinfo!=null){
           this.Base.setMyData({ memberinfo: memberinfo });
         }
+      });
+
+      liveapi.commentlist({ course_id: that.Base.options.id }, (ret) => {
+        
+        that.Base.setMyData({ viewcount: ret.viewcount, upcount: ret.upcount, commentcount: ret.commentcount, comments: ret.commentlist });
       });
     
   }
@@ -62,13 +68,20 @@ class Content extends AppBase {
       return;
     } 
     var comment = e.detail.value.comment.trim();
+    var that=this;
     this.Base.setMyData({ comment: "" });
     var liveapi = new CourseApi();
-    liveapi.comment({ livemeeting_id: this.Base.options.id, comment: comment }, (ret) => {
+    liveapi.comment({ course_id: this.Base.options.id, comment: comment }, (ret) => {
       if(ret.code==0){
         wx.showToast({
           title: '发送成功'
-        })
+        });
+
+        var liveapi=new CourseApi();
+        liveapi.commentlist({ course_id: that.Base.options.id }, (ret) => {
+
+          that.Base.setMyData({ viewcount: ret.viewcount, upcount: ret.upcount, commentcount: ret.commentcount, comments: ret.commentlist });
+        });
       }
     });
   }
@@ -78,7 +91,7 @@ class Content extends AppBase {
   sendNotify(e){
     var formid = e.detail.formId;
     var liveapi = new CourseApi();
-    liveapi.sendnotify({ livemeeting_id: this.Base.options.id, formid: formid }, (ret) => {
+    liveapi.sendnotify({ course_id: this.Base.options.id, formid: formid }, (ret) => {
       if(ret.code==0){
         var info = this.Base.getMyData().info;
         info.notifyme = true;
@@ -91,7 +104,8 @@ class Content extends AppBase {
     var info=data.info;
     return {
       title: info.title,
-      imageUrl: data.uploadpath + "livemeeting/" + info.sharecover,
+      path:"/pages/course/course?id="+this.Base.options.id,
+      imageUrl: data.uploadpath + "course/" + info.sharecover,
       success: function (res) {
         // 转发成功
       },
@@ -110,7 +124,7 @@ class Content extends AppBase {
     
     this.Base.setMyData({info:info});
     var liveapi = new CourseApi();
-    liveapi.up({ livemeeting_id: this.Base.options.id}, (ret) => {
+    liveapi.up({ course_id: this.Base.options.id}, (ret) => {
       
     },false);
   }
@@ -157,18 +171,21 @@ class Content extends AppBase {
       this.Base.setMyData({ inplay: true });
     }
   }
-  playVideo(e){
+  playVideo(e) {
+    if(videoContext!=null){
+      console.log("stop");
+      videoContext.pause();
+    }
     var idx=e.currentTarget.id;
     var info=this.Base.getMyData().info;
     var videos=info.videos;
     this.Base.setMyData({ currentvideo: videos[idx] });
-    videoContext.play();
   }
   favorite(){
     var that=this;
     var info = this.Base.getMyData().info;
     var liveapi = new CourseApi();
-    liveapi.favorite({ livemeeting_id: this.Base.options.id }, (ret) => {
+    liveapi.favorite({ course_id: this.Base.options.id }, (ret) => {
       info.favorited = !info.favorited;
       this.Base.setMyData({ info: info });
     });
@@ -177,6 +194,12 @@ class Content extends AppBase {
 
   onUnload() {
     clearInterval(commenttimer);
+  }
+  playOtherVideo(e){
+    var id=e.currentTarget.id;
+    console.log(this.Base.options);
+    this.Base.options.id=id;
+    this.onMyShow();
   }
 }
 
@@ -208,8 +231,9 @@ body.bindfullscreenchange = content.bindfullscreenchange;
 body.bindstatechange = content.bindstatechange; 
 body.changePlayStatus = content.changePlayStatus;
 body.playVideo = content.playVideo; 
-body.favorite = content.favorite;
+body.favorite = content.favorite; 
 body.onUnload = content.onUnload;
+body.playOtherVideo = content.playOtherVideo;
 
 var commenttimer=null;
 
