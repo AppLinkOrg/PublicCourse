@@ -1,1 +1,25 @@
 /* pages/activityorderlist/activityorderlist.wxss */
+
+.cover{
+  width:160rpx;
+  height: 100rpx;
+}
+.bottom-price{
+  font-size: 28rpx;
+  margin-top: 10rpx;
+}
+.ticket{
+  margin-bottom: 30rpx;
+  border:4rpx solid #f0f0f0;
+  border-radius: 10rpx;
+}
+.ticket.selected{
+  border:4rpx solid #BF8436;
+}
+.ticket .title{
+  color:black;
+}
+.ticket .remark{
+  font-size: 26rpx;
+  border-top: 2rpx solid #f0f0f0;
+}

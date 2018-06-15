@@ -3,20 +3,20 @@
 
 <view wx:if="{{list.length>0}}">
   <view wx:for="{{list}}" wx:key="k" wx:for-index="idx">
-    <navigator url='/pages/livemeeting/livemeeting?id={{item.livemeeting_id}}' class='flex-row' style='padding:20rpx;' hover-class='video_click' >
+    <navigator url='/pages/course/course?id={{item.course_id}}' class='flex-row rowitem white-block border-bottom' style='padding:20rpx;' hover-class='video_click' >
       <view>
-        <image class='video_cover' src="{{uploadpath}}livemeeting/{{item.livemeeting_cover}}" mode='widthFix'></image>
-      </view>
-      <view class='flex-1' style='margin-left:20rpx;'>
-        <view class='video_title'>
-          {{item.livemeeting_title}}
-        </view>
-        <view class='flex-row video_bottom_info'>
-          <view class='video_playtime'>
-            {{item.livemeeting_hostername}}
+            <image src='{{uploadpath}}course/{{item.course_cover}}' class='imgcover' mode='aspectFill'></image>
           </view>
-        </view>
-      </view>
+          <view class='flex-1'>
+            <view class='headtitle'>{{item.course_title}}</view>
+            <view class='headdescription'>{{item.course_summary}}
+            </view><view class='flex-row headdescription'>
+                    <view>
+                      <image src="{{uploadpath}}resource/time.png" mode='widthFix' style='width:30rpx;height:30rpx;'></image>
+                    </view>
+                    <view class='headdescription'>{{item.course_totalplaytime}}</view>
+                  </view>
+          </view>
     </navigator>
   </view>
 </view>

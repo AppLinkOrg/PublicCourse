@@ -1,66 +1,35 @@
-// pages/member/member.js
-Page({
-
-  /**
-   * 页面的初始数据
-   */
-  data: {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad: function (options) {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
-  onShow: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide: function () {
-  
-  },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload: function () {
-  
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh: function () {
-  
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom: function () {
-  
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage: function () {
-  
+// pages/content/content.js
+import { AppBase } from "../../appbase";
+import { ApiConfig } from "../../apis/apiconfig";
+import { ContentApi } from "../../apis/content.api";
+import { MemberApi } from "../../apis/member.api";
+class Content extends AppBase {
+  constructor() {
+    super();
   }
-})
+  onLoad(options) {
+    this.Base.Page = this;
+    //options.id=5;
+    super.onLoad(options);
+  }
+  onMyShow() {
+    var that = this;
+    var memberApi = new MemberApi();
+    memberApi.info({}, (memberinfo) => {
+      if (memberinfo != null) {
+        this.Base.setMyData({ memberinfo: memberinfo });
+      }
+    });
+  }
+  changePlayinback(e) {
+    var v = e.detail.value ? "Y" : "N";
+    var memberApi = new MemberApi();
+    memberApi.setvalue({ field: "playinback", playinback: v });
+  }
+}
+var content = new Content();
+var body = content.generateBodyJson();
+body.onLoad = content.onLoad;
+body.onMyShow = content.onMyShow;
+body.changePlayinback = content.changePlayinback;
+Page(body)

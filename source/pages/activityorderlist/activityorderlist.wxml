@@ -1,2 +1,230 @@
 <!--pages/activityorderlist/activityorderlist.wxml-->
-<text>pages/activityorderlist/activityorderlist.wxml</text>
+
+<view class='flex-row tabs'>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="0">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==0?"active":""}}'>已购票</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="1">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==1?"active":""}}'>待审核</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="2">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==2?"active":""}}'>待支付</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="3">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==3?"active":""}}'>退票</view>
+    <view class='flex-1'></view>
+  </view>
+  <view class='flex-1 tab  flex-row ' bindtap='changeTab' id="4">
+    <view class='flex-1'></view>
+    <view class='tabtext {{currenttab==4?"active":""}}'>全部</view>
+    <view class='flex-1'></view>
+  </view>
+</view>
+
+
+<swiper indicator-dots="{{false}}" current='{{currenttab}}' bindchange="changeCurrentTab" class="maintab">
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+      <block wx:for="{{list1}}" wx:key="k">
+
+        <navigator url='/pages/activityorder/activityorder?id={{item.id}}'>
+          <view class='padding-20 white-block border-bottom'>
+            <view class='flex-row '>
+              <view>
+                <image class='cover' src='{{uploadpath}}activity/{{item.activity_cover}}'></image>
+              </view>
+              <view class='flex-1' style='margin-left:20rpx;'>
+                <view>{{item.activity_name}}</view>
+                <view class='flex-row'>
+                  <view>
+                    <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+                  </view>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_datedesc}}</view>
+                </view>
+                <view class='flex-row'>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_address}}</view>
+                </view>
+                <view class='bottom-price txt-primary text-right'>
+                  {{item.activity_ticket_level_name}} {{item.buycount}}张 X ¥{{item.price}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='padding-20 white-block border-bottom text-right txt-primary'>
+            总共：¥{{item.totalamount}}
+          </view>
+        </navigator>
+      </block>
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+
+      <block wx:for="{{list2}}" wx:key="k">
+
+        <navigator url='/pages/activityorder/activityorder?id={{item.id}}'>
+          <view class='padding-20 white-block border-bottom'>
+            <view class='flex-row '>
+              <view>
+                <image class='cover' src='{{uploadpath}}activity/{{item.activity_cover}}'></image>
+              </view>
+              <view class='flex-1' style='margin-left:20rpx;'>
+                <view>{{item.activity_name}}</view>
+                <view class='flex-row'>
+                  <view>
+                    <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+                  </view>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_datedesc}}</view>
+                </view>
+                <view class='flex-row'>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_address}}</view>
+                </view>
+                <view class='bottom-price txt-primary text-right'>
+                  {{item.activity_ticket_level_name}} {{item.buycount}}张 X ¥{{item.price}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='padding-20 white-block border-bottom text-right txt-primary'>
+            总共：¥{{item.totalamount}}
+          </view>
+        </navigator>
+      </block>
+
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+      <block wx:for="{{list3}}" wx:key="k">
+
+        <navigator url='/pages/activityorder/activityorder?id={{item.id}}'>
+          <view class='padding-20 white-block border-bottom'>
+            <view class='flex-row '>
+              <view>
+                <image class='cover' src='{{uploadpath}}activity/{{item.activity_cover}}'></image>
+              </view>
+              <view class='flex-1' style='margin-left:20rpx;'>
+                <view>{{item.activity_name}}</view>
+                <view class='flex-row'>
+                  <view>
+                    <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+                  </view>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_datedesc}}</view>
+                </view>
+                <view class='flex-row'>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_address}}</view>
+                </view>
+                <view class='bottom-price txt-primary text-right'>
+                  {{item.activity_ticket_level_name}} {{item.buycount}}张 X ¥{{item.price}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='padding-20 white-block border-bottom flex-row flex-center'>
+            <view class='flex-1 text-right txt-primary '>
+            总共：¥{{item.totalamount}}
+            </view>
+            <view style='margin-left:10rpx'>
+            <button size='mini' type='primary'>立即支付</button>
+            </view>
+            
+          </view>
+        </navigator>
+      </block>
+
+
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+
+      <block wx:for="{{list4}}" wx:key="k">
+
+        <navigator url='/pages/activityorder/activityorder?id={{item.id}}'>
+          <view class='padding-20 white-block border-bottom'>
+            <view class='flex-row '>
+              <view>
+                <image class='cover' src='{{uploadpath}}activity/{{item.activity_cover}}'></image>
+              </view>
+              <view class='flex-1' style='margin-left:20rpx;'>
+                <view>{{item.activity_name}}</view>
+                <view class='flex-row'>
+                  <view>
+                    <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+                  </view>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_datedesc}}</view>
+                </view>
+                <view class='flex-row'>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_address}}</view>
+                </view>
+                <view class='bottom-price txt-primary text-right'>
+                  {{item.activity_ticket_level_name}} {{item.buycount}}张 X ¥{{item.price}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='padding-20 white-block border-bottom flex-row txt-primary'>
+            总共：¥{{item.totalamount}} 
+          </view>
+        </navigator>
+      </block>
+
+
+    </scroll-view>
+  </swiper-item>
+  <swiper-item>
+    <scroll-view scroll-y style='height:100%'>
+
+
+      <block wx:for="{{list5}}" wx:key="k">
+
+        <navigator url='/pages/activityorder/activityorder?id={{item.id}}'>
+          <view class='padding-20 white-block border-bottom'>
+            <view class='flex-row '>
+              <view>
+                <image class='cover' src='{{uploadpath}}activity/{{item.activity_cover}}'></image>
+              </view>
+              <view class='flex-1' style='margin-left:20rpx;'>
+                <view>{{item.activity_name}}</view>
+                <view class='flex-row'>
+                  <view>
+                    <image style='width:30rpx;height:30rpx;' src='{{uploadpath}}resource/time.png'></image>
+                  </view>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_datedesc}}</view>
+                </view>
+                <view class='flex-row'>
+                  <view style='margin-left:10rpx;font-size:24rpx;margin-top:10rpx;'>{{item.activity_address}}</view>
+                </view>
+                <view class='bottom-price txt-primary text-right'>
+                  总共：¥{{item.totalamount}}
+                </view>
+              </view>
+            </view>
+          </view>
+          <view class='padding-20 white-block border-bottom text-right txt-primary'>
+            {{item.status_name}}
+          </view>
+        </navigator>
+      </block>
+
+
+    </scroll-view>
+  </swiper-item>
+</swiper>

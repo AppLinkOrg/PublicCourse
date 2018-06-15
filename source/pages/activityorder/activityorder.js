@@ -27,9 +27,9 @@ class Content extends AppBase {
 
   gotoBuy(){
     var that = this;
-    var wechatApi = new WechatApi();
+    var api = new ActivityApi();
     console.log(this.Base.options.id);
-    wechatApi.prepay({ id: this.Base.options.id }, function (data) {
+    api.ticketorderprepay({ id: this.Base.options.id }, function (data) {
       if (data.code == 0) {
         wx.requestPayment({
           'timeStamp': data.timeStamp,

@@ -1,2 +1,36 @@
 <!--pages/member/member.wxml-->
-<text>pages/member/member.wxml</text>
+<view class='text-center memberinfo'>
+<view>
+      <image class='avatar' src='{{UserInfo.avatarUrl}}'></image>
+    </view>
+    <view class='nickname'>
+      {{UserInfo.nickName}}
+    </view>
+</view>
+
+<view class='block-tips'>个人设置</view>
+<view class='white-block block'>
+<view  class='item item-split'>允许后台播放
+<switch checked="{{memberinfo.playinback=='Y'}}" bindchange="changePlayinback" color="#BF8436" class='rightswitch' />
+</view>
+</view>
+
+<view class='block-tips'>活动</view>
+<view class='white-block block'>
+<navigator url='/pages/activityorderlist/activityorderlist' class='item'>购买记录
+<image class='righticon' src='{{uploadpath}}resource/right.png'></image></navigator>
+</view>
+
+<view class='block-tips'>信息</view>
+<view class='white-block block'>
+<navigator url='/pages/browsehistory/browsehistory'  class='item item-split'>浏览记录
+<image class='righticon' src='{{uploadpath}}resource/right.png'></image>
+</navigator>
+<navigator url='/pages/favorite/favorite' class='item'>关注
+<image class='righticon' src='{{uploadpath}}resource/right.png'></image></navigator>
+</view>
+
+<view class='white-block block' style='margin-top:40rpx;'>
+<button open-type="contact" class='contactbutton'>联系客服</button>
+<navigator url='/pages/content/content?keycode=instruction&title=个人中心'  class='item'>关于我们</navigator>
+</view>

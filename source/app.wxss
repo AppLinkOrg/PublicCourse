@@ -38,6 +38,7 @@ view,navigator{
 }
 .primary-block{
   background: #BF8436;
+  color:white;
 }
 .bg-primary{
   background: #BF8436;
@@ -159,6 +160,9 @@ button[disabled][type=primary] {
 }
 .fullimg{
   width: 100%;
+}
+.border-bottom{
+  border-bottom: 2rpx rgba(221, 221, 221, 0.5) solid;
 }
 
 

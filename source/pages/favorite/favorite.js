@@ -1,7 +1,7 @@
 // pages/content/content.js
 import { AppBase } from "../../appbase";
 import { ApiConfig } from "../../apis/apiconfig";
-import { LivemeetingApi } from '../../apis/livemeeting.api';
+import { CourseApi } from '../../apis/course.api';
 
 class Content extends AppBase {
   constructor() {
@@ -15,7 +15,7 @@ class Content extends AppBase {
   onMyShow() {
     var that = this;
 
-    var livemeetingapi = new LivemeetingApi();
+    var livemeetingapi = new CourseApi();
     livemeetingapi.favoritelist({}, (list) => {
       that.Base.setMyData({ list: list });
     });
