@@ -98,7 +98,7 @@
             <view>
               <image src='{{uploadpath}}resource/map.png' class='info-icon'></image>
             </view>
-            <view class=' infodesc nowrap'>{{info.address}}</view>
+            <view class=' infodesc' style='max-width:400rpx;'>{{info.address}}</view>
           </view>
           <view class='flex-row infoitem' bindtap='phoneCall' id="{{info.tel}}" wx:if="{{info.tel!=''}}">
             <view>

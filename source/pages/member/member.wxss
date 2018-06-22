@@ -1,10 +1,10 @@
 /* pages/member/member.wxss *//* pages/member/member.wxss */
 .memberinfo{
   padding:40rpx;
-  background: -webkit-linear-gradient(left, #E1C196 , #BF8436); 
-  background: -o-linear-gradient(right, #E1C196 , #BF8436);
-  background: -moz-linear-gradient(right, #E1C196 , #BF8436); 
-  background: linear-gradient(to right, #E1C196 , #BF8436); 
+  background: -webkit-linear-gradient(top, #E1C196 , #BF8436); 
+  background: -o-linear-gradient(top, #E1C196 , #BF8436);
+  background: -moz-linear-gradient(top, #E1C196 , #BF8436); 
+  background: linear-gradient(to top, #E1C196 , #BF8436); 
 }
 .avatar{
   width:150rpx;

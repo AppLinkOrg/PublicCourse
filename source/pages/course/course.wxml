@@ -18,7 +18,12 @@
         </view>
         <view class='flex-1 tab flex-row ' bindtap='changeTab' id="1">
           <view class='flex-1'></view>
-          <view class='tabtext {{currenttab==1?"active":""}}'>评论 {{commentcount}}</view>
+          <view class='tabtext {{currenttab==1?"active":""}}'>详情</view>
+          <view class='flex-1'></view>
+        </view>
+        <view class='flex-1 tab flex-row ' bindtap='changeTab' id="2">
+          <view class='flex-1'></view>
+          <view class='tabtext {{currenttab==2?"active":""}}'>评论 {{commentcount}}</view>
           <view class='flex-1'></view>
         </view>
       </view>
@@ -65,11 +70,12 @@
                 </view>
                 <view class='icontxt' bindtap='favorite'> 收藏</view>
               </view>
-              <view class='flex-1 text-center' hidden='true'>
+              <view class='flex-1 text-center' >
                 <view>
                   <image class='icon' src='{{uploadpath}}resource/forward.png'></image>
                 </view>
                 <view class='icontxt'> 转发</view>
+                
               </view>
             </view>
 
@@ -106,6 +112,22 @@
 
           </scroll-view>
         </swiper-item>
+
+
+        <swiper-item >
+          <scroll-view scroll-y="{{true}}" style="height:100%;">
+            
+            <view class='padding-10 white-block'>
+              <view wx:for="{{info.imgs}}" wx:key="k">
+                <image style='width:100%;' src='{{uploadpath}}course/{{item.img}}' mode='widthFix'></image>
+              </view>
+            </view>
+
+
+          </scroll-view>
+        </swiper-item>
+
+
         <swiper-item >
           <scroll-view scroll-y="{{true}}" style="height:100%;">
 
@@ -134,9 +156,9 @@
                 </view>
               </view>
             </form>
-
           </scroll-view>
         </swiper-item>
+
       </swiper>
     </view>
 

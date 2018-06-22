@@ -13,6 +13,7 @@ page{
 view,navigator{
   color:#333;
   font-size: 32rpx;
+  font-weight: 350;
 }
 .flex-row{
   display: flex;
@@ -51,7 +52,7 @@ view,navigator{
   color:white;
 }
 .txt-gray{
-  color:#ddd;
+  color:#919191;
 }
 .nowrap{
   word-break:keep-all;           /* 不换行 */
