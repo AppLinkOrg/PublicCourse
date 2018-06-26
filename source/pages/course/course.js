@@ -14,7 +14,8 @@ class Content extends AppBase {
     this.Base.Page = this;
     super.onLoad(options);
     this.Base.setMyData({ currenttab: 0, currentrtmp: 0, comments: [], infullscreen: false, currentrtmpurl: "", inplay: true,playcode:0,info:null,currentvideo:null });
-    var that=this;
+    var that = this;
+    this.Base.pagetitle = "";
   }
   onMyShow() {
     var that = this;
@@ -23,6 +24,9 @@ class Content extends AppBase {
       liveapi.info({id:this.Base.options.id},(ret)=>{
         this.Base.options.id=ret.id;
         this.Base.setMyData({info:ret});
+        wx.setNavigationBarTitle({
+          title: ret.title,
+        })
         
         liveplayer=wx.createLivePlayerContext("liveplayer", this);
         if(ret.videos!=undefined){

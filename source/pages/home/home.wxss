@@ -71,3 +71,22 @@ height: 350rpx;
 .detail{
   padding: 10rpx;
 }
+
+
+.searchbar{
+  background-color: #f2f2f2;
+  padding:10rpx;
+  border-radius: 30rpx;
+}
+.searchbar .searchbaricon{
+  width: 40rpx;
+  height: 40rpx;
+  margin-left: 250rpx;
+}
+.searchbar .searchbaricon image{
+  width: 40rpx;
+  height: 40rpx;
+}
+.searchbar .searchbartext{
+  color: #ccc;
+}

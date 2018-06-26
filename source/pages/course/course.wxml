@@ -32,7 +32,7 @@
         <swiper-item>
           <scroll-view scroll-y style='height:100%;'>
             <view class='padding-20'>{{info.title}}</view>
-            <view class='padding-20 txt-gray h6'>{{info.summary}}</view>
+            <view class='padding-20 txt-gray h6'><text>{{info.summary}}</text></view>
             <view class='desccomment flex-row flex-center padding-20'>
               <view>
                 <image class='icona' src='{{uploadpath}}resource/playcount.png'></image>
@@ -75,7 +75,7 @@
                   <image class='icon' src='{{uploadpath}}resource/forward.png'></image>
                 </view>
                 <view class='icontxt'> 转发</view>
-                
+                <button open-type='share' class='clear-button' style='width:100rpx;height:100rpx;margin-top:-100rpx;'></button>
               </view>
             </view>
 

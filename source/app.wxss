@@ -10,6 +10,18 @@ page{
   opacity: 1;
   background: orange;
 }
+.clear-button{ 
+  padding: 0rpx;
+  font-size: unset;
+  text-align: unset;
+  line-height: unset;
+  background-color: transparent;
+  border: 0rpx red solid;
+  border-color:red;
+}
+.clear-button::after {
+  border: 0;
+} 
 view,navigator{
   color:#333;
   font-size: 32rpx;

@@ -22,10 +22,24 @@
   <swiper-item>
     <scroll-view scroll-y style='height:100%'>
 
+<view class='white-block padding-20' >
+  <view class='searchbar' bindtap='gotoSearch'>
+    <view class='flex-row flex-center'>
+      <view class='searchbaricon text-right'>
+        <image src='{{uploadpath}}resource/search.png'></image>
+      </view>
+      <view class='searchbartext  h6'>
+        搜索
+      </view>
+    </view>
+  </view>
+</view>
+
+
       <view class='gridrow'>
         <navigator url='/pages/course/course?id={{item.id}}' class='grid-item' wx:for="{{videolist}}" wx:key="k">
           <view class='grid-cover'>
-            <image src='{{uploadpath}}course/{{item.cover}}'></image>
+            <image mode='aspectFill' src='{{uploadpath}}course/{{item.cover}}'></image>
           </view>
           <view class='grid-time'>
           {{item.totalplaytime}}

@@ -144,7 +144,7 @@
 }
 .video_playnow{
   font-size: 22rpx;
-  height: 60rpx;
+  height: 70rpx;
   overflow:hidden; 
 text-overflow:ellipsis;
 display:-webkit-box; 

@@ -84,6 +84,11 @@ class Content extends AppBase {
       that.setMyData({ productlist: productlist });
     });
   }
+  gotoSearch(){
+    wx.switchTab({
+      url: '/pages/search/search',
+    })
+  }
 }
 var content = new Content();
 var body = content.generateBodyJson();
@@ -96,4 +101,5 @@ body.loadinst = content.loadinst;
 body.loadhot = content.loadhot; 
 body.livelist = content.livelist;
 body.loadactivity = content.loadactivity;
+body.gotoSearch = content.gotoSearch;
 Page(body)
